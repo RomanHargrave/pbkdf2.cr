@@ -58,13 +58,13 @@ class PBKDF2
    @max_key_length   : UInt64
    @key_length       : UInt64
 
-   def initialize(p_password, p_salt,
+   def initialize(password, salt,
                   @iterations : UInt,
                   @hash_function : OpenSSL::Digest = OpenSSL::Digest.new("sha256"),
                   @key_length : UInt64 = 0)
 
-      @password       = p_password.to_slice
-      @salt           = p_salt.to_slice
+      @password       = password.to_slice
+      @salt           = salt.to_slice
       @max_key_length = ((2_u64 ** 32_u64 - 1_u64) * @hash_function.digest_size)
       @key_length     = @hash_function.digest_size.to_u64 if @key_length < 1
       @key            = nil
