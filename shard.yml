@@ -1,0 +1,8 @@
+name: pbkdf2-cr
+version: 0.1.0
+
+authors:
+   - Roman Hargave <roman@hargrave.info>
+
+description: |
+   Implements PBKDF 2 in Crystal
