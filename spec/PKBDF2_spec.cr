@@ -66,4 +66,16 @@ describe PBKDF2 do
          pbkdf.key.should eq output
       end
    end
+
+   it "should yield the requested key length" do
+      digest = OpenSSL::Digest.new("sha1")
+      [128, 256, 512, 1024, 2048, 4096].each do |len|
+         pbkdf = PBKDF2.new(password, salt, 5, digest, len.to_u64)
+         if key = pbkdf.key
+            key.size.should eq len
+         else
+            raise "No key generated"
+         end
+      end
+   end
 end
